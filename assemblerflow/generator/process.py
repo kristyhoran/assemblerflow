@@ -1092,10 +1092,3 @@ class MashScreen(Process):
 
         self.input_type = "fastq"
         self.output_type = "json"
-
-        self.secondary_inputs = [
-            {
-                "params": "fastq",
-                "channel": "IN_reads = Channel.value(params.fastq)"
-            }
-        ]

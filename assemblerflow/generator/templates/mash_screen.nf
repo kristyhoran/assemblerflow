@@ -1,8 +1,9 @@
+
+// checks if winner was provided or not
+winnerVar = (params.noWinner == false) ? "-w" : ""
+
 // creates two channels for each approach
-Channel
-    .value("/home/data/patlas.msh")
-    .into { refSketchChannel }
-}
+refSketchChannel = Channel.value("/home/data/patlas.msh")
 
 // process to run mashScreen and sort the output into
 // sortedMashScreenResults_{sampleId}.txt
@@ -19,7 +20,7 @@ process mashScreen {
 
     """
     mash screen -i ${params.identity} -v ${params.pValue} -p \
-    ${params.threads} ${winnerVar} ${refSketch} ${reads} > mashScreenResults_${sample}.txt
+    ${params.threadsMash} ${winnerVar} ${refSketch} ${reads} > mashScreenResults_${sample}.txt
     sort -gr mashScreenResults_${sample}.txt > sortedMashScreenResults_${sample}.txt
     """
 }
