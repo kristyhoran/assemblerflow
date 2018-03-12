@@ -39,6 +39,7 @@ process_map = {
         "chewbbaca": pc.Chewbbaca,
         # "status_compiler": pc.StatusCompiler,
         # "trace_compiler": pc.TraceCompiler
+        "mash_screen": pc.MashScreen
 }
 """
 dict: Maps the process ids to the corresponding template interface class wit

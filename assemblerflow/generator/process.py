@@ -1077,3 +1077,25 @@ class StatusCompiler(Status):
         self.ignore_type = True
         self.link_start = None
 
+
+class MashScreen(Process):
+    """Template for mash screen
+
+    This process is designed to generate pATLAS mash screen results for
+    containment of plasmids in HTS data.
+
+    """
+
+    def __init__(self, **kwargs):
+
+        super().__init__(**kwargs)
+
+        self.input_type = "fastq"
+        self.output_type = "json"
+
+        self.secondary_inputs = [
+            {
+                "params": "fastq",
+                "channel": "IN_reads = Channel.value(params.fastq)"
+            }
+        ]
