@@ -1,4 +1,5 @@
 import logging
+import sys
 
 logger = logging.getLogger("main.{}".format(__name__))
 
@@ -73,7 +74,7 @@ def procs_dict_parser(procs_dict):
             ))
 
 
-def proc_collector(process_map, arguments_list):
+def proc_collector(process_map, args):
     """
     Function that collects all processes available and stores a dictionary of
     the required arguments of each process class to be passed to
@@ -84,12 +85,29 @@ def proc_collector(process_map, arguments_list):
     process_map: dict
         The dictionary with the Processes currently available in assemblerflow
         and their corresponding classes as values
-    arguments_list: list
-        The arguments to fetch from the classes in process_map. This depends on
-        the argparser option -l or -L that has been used.
+    args: argparse.Namespace
+        The arguments passed through argparser that will be access to check the
+        type of list to be printed
 
 
     """
+
+    # prints a detailed list of the process class arguments
+    if args.detailed_list:
+        # list of attributes to be passed to proc_collector
+        arguments_list = [
+            "input_type",
+            "output_type",
+            "description",
+            "dependencies",
+            "conflicts"
+        ]
+
+    # prints a short list with each process and the corresponding description
+    if args.short_list:
+        arguments_list = [
+            "description"
+        ]
 
     # dict to store only the required entries
     procs_dict = {}
@@ -104,5 +122,7 @@ def proc_collector(process_map, arguments_list):
         procs_dict[name] = d
 
     procs_dict_parser(procs_dict)
+
+    sys.exit(0)
 
 
