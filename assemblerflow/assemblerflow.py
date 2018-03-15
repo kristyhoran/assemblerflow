@@ -171,10 +171,10 @@ def run(args):
         sys.exit(0)
 
     # Validate arguments
-    passed = check_arguments(args)
+    #passed = check_arguments(args)
 
-    if not passed:
-        return
+    #if not passed:
+    #    return
 
     try:
         logger.info(colored_print("Checking pipeline for errors..."))
